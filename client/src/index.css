@@ -1,0 +1,558 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(220, 13%, 18%);
+  --muted: hsl(220, 14%, 96%);
+  --muted-foreground: hsl(220, 9%, 46%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(220, 13%, 18%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(220, 13%, 18%);
+  --border: hsl(220, 13%, 91%);
+  --input: hsl(220, 13%, 91%);
+  --primary: hsl(215, 100%, 60%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(177, 70%, 41%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --accent: hsl(220, 14%, 96%);
+  --accent-foreground: hsl(220, 13%, 18%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --ring: hsl(215, 100%, 60%);
+  --radius: 0.75rem;
+
+  /* Custom chat colors */
+  --chat-bg: linear-gradient(135deg, hsl(220, 20%, 98%) 0%, hsl(215, 30%, 96%) 100%);
+  --user-bubble: linear-gradient(135deg, hsl(215, 100%, 60%) 0%, hsl(215, 100%, 65%) 100%);
+  --bot-bubble: hsl(0, 0%, 100%);
+  --shadow-light: hsla(220, 30%, 0%, 0.08);
+  --shadow-medium: hsla(220, 30%, 0%, 0.12);
+  --shadow-strong: hsla(220, 30%, 0%, 0.16);
+
+  /* Enhanced gradients for financial theme */
+  --gradient-primary: linear-gradient(135deg, hsl(215, 100%, 60%) 0%, hsl(225, 85%, 70%) 100%);
+  --gradient-secondary: linear-gradient(135deg, hsl(177, 70%, 41%) 0%, hsl(185, 60%, 50%) 100%);
+  --gradient-accent: linear-gradient(135deg, hsl(45, 100%, 60%) 0%, hsl(35, 100%, 65%) 100%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Custom styles for chat interface */
+.chat-container {
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  min-height: 100vh;
+}
+
+/* Dark mode styles */
+.dark {
+  color-scheme: dark;
+}
+
+.dark .chat-container {
+  background: linear-gradient(135deg, #111827 0%, #0f172a 100%);
+}
+
+/* Enhanced dark mode for input elements */
+.dark input,
+.dark textarea {
+  color: #f9fafb;
+  background-color: rgba(31, 41, 55, 0.9);
+  border-color: #4b5563;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Enhanced glass effect for message input */
+.glass-effect {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass-effect {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Smooth pulse animation for recording indicator */
+@keyframes pulse-red {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-red {
+  animation: pulse-red 1.5s ease-in-out infinite;
+}
+
+/* Enhanced button hover effects */
+.btn-hover-scale {
+  transition: transform 0.2s ease-in-out;
+}
+
+.btn-hover-scale:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+/* Gradient backgrounds */
+.gradient-bg {
+  background: linear-gradient(135deg, hsl(215, 100%, 60%) 0%, hsl(225, 85%, 70%) 100%);
+}
+
+.gradient-bg:hover {
+  background: linear-gradient(135deg, hsl(215, 100%, 65%) 0%, hsl(225, 85%, 75%) 100%);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.4);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.6);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.4);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 85, 99, 0.6);
+}
+
+.dark body {
+  background: linear-gradient(135deg, #111827 0%, #0f172a 100%);
+  color: #f9fafb;
+}
+
+.animate-bounce {
+  animation: bounce 1.4s infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  20%,
+  53%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40%,
+  43% {
+    transform: translateY(-30%);
+  }
+
+  70% {
+    transform: translateY(-15%);
+  }
+
+  90% {
+    transform: translateY(-4%);
+  }
+}
+
+/* Remove focus outline from input area */
+.message-input-container:focus-within {
+  outline: none !important;
+  border: 1px solid rgb(229, 231, 235) !important;
+}
+
+.dark .message-input-container:focus-within {
+  border: 1px solid rgb(75, 85, 99) !important;
+}
+
+.chat-message-enter {
+  animation: messageSlideIn 0.3s ease-out;
+}
+
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, hsl(215, 100%, 60%) 0%, hsl(215, 100%, 65%) 100%);
+}
+
+.glass-effect {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass-effect {
+  background: rgba(17, 24, 39, 0.85);
+  border: 1px solid rgba(75, 85, 99, 0.3);
+}
+
+.shadow-custom-light {
+  box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.shadow-custom-medium {
+  box-shadow: 0 4px 16px var(--shadow-medium);
+}
+
+.shadow-custom-strong {
+  box-shadow: 0 8px 32px var(--shadow-strong);
+}
+
+/* Remove animations for cleaner design */
+
+/* Simplified hover effects */
+.btn-hover-scale {
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-hover-scale:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Improved gradients */
+.gradient-primary {
+  background: var(--gradient-primary);
+}
+
+.gradient-secondary {
+  background: var(--gradient-secondary);
+}
+
+.gradient-accent {
+  background: var(--gradient-accent);
+}
+
+/* Scrollbar styling */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 3px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Button hover effects */
+.btn-hover-scale {
+  transition: all 0.2s ease;
+}
+
+.btn-hover-scale:hover {
+  transform: scale(1.02);
+}
+
+.btn-hover-scale:active {
+  transform: scale(0.98);
+}
+
+/* Floating animation for welcome icon - disabled */
+.float-animation {
+  /* animation: float 3s ease-in-out infinite; */
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Mobile viewport adjustments */
+@media (max-width: 768px) {
+  html {
+    zoom: 0.9;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  .chat-container {
+    padding: 0.5rem;
+  }
+
+  /* Improved touch targets */
+  .btn, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Better spacing for mobile */
+  .space-y-6 > * + * {
+    margin-top: 1rem;
+  }
+
+  .space-y-4 > * + * {
+    margin-top: 0.75rem;
+  }
+
+  /* Optimize text readability */
+  .text-sm {
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .text-base {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Better mobile shadows */
+  .shadow-lg {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .shadow-xl {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Improved glass effect on mobile */
+  .glass-effect {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  html {
+    zoom: 0.85;
+  }
+
+  body {
+    font-size: 13px;
+  }
+
+  .chat-container {
+    padding: 0.25rem;
+  }
+
+  /* Smaller avatars on tiny screens */
+  .w-8.h-8 {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  /* Compact message bubbles */
+  .max-w-\[85\%\] {
+    max-width: 90%;
+  }
+}
+
+/* Enhanced animations and transitions */
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-slide-in {
+  animation: slideInFromBottom 0.3s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.2s ease-out;
+}
+
+/* Smooth scrolling for chat messages */
+.chat-messages {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced focus styles for accessibility */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}
+
+/* Custom scrollbar for webkit browsers */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 2px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.5);
+}
+
+/* Better focus indicators */
+button:focus,
+textarea:focus,
+input:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Improved loading state */
+.loading-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Custom styles for markdown content in chat */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: rgb(17, 24, 39);
+}
+
+.markdown-content p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: rgb(55, 65, 81);
+  line-height: 1.6;
+}
+
+.markdown-content p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  color: rgb(55, 65, 81);
+}
+
+.markdown-content li {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.6;
+  color: rgb(55, 65, 81);
+}
+
+.markdown-content strong {
+  font-weight: 600;
+  color: rgb(17, 24, 39);
+}
+
+.markdown-content em {
+  font-style: italic;
+  color: rgb(55, 65, 81);
+}
+
+.markdown-content code {
+  background-color: rgb(243, 244, 246);
+  color: rgb(17, 24, 39);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.375rem;
+  font-size: 0.875em;
+  font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+}
